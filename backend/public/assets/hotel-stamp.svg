@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <path id="topArc" d="M 30,110 A 80,80 0 0 1 190,110" />
+    <path id="bottomArc" d="M 38,150 A 72,72 0 0 0 182,150" />
+  </defs>
+  <circle cx="110" cy="110" r="104" fill="none" stroke="#b91c1c" stroke-width="4"/>
+  <circle cx="110" cy="110" r="92" fill="none" stroke="#b91c1c" stroke-width="2"/>
+  <text font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#b91c1c" letter-spacing="3">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">OFFICIAL &#8226; VERIFIED</textPath>
+  </text>
+  <text font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#b91c1c" letter-spacing="3">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">RESTAURANT SEAL</textPath>
+  </text>
+  <g transform="translate(110,108)">
+    <circle r="34" fill="none" stroke="#b91c1c" stroke-width="2.5"/>
+    <path d="M -14,-10 L -14,14 M -14,-10 C -14,-18 -4,-18 -4,-10 C -4,-2 -14,-2 -14,-2 M 6,-14 L 6,14 M -4,0 L 16,0 M 16,-14 L 16,14 M 16,-14 C 16,-14 24,-14 24,-8 C 24,-2 16,-2 16,-2"
+      fill="none" stroke="#b91c1c" stroke-width="0" />
+    <text x="0" y="8" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#b91c1c" text-anchor="middle">MUHAR</text>
+  </g>
+  <text x="110" y="200" font-family="Georgia, serif" font-size="10" fill="#b91c1c" text-anchor="middle" letter-spacing="2">AUTHORIZED SIGNATORY</text>
+</svg>

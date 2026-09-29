@@ -1,0 +1,6 @@
+{
+  "name": "Smart Restaurant & QR Ordering System",
+  "description": "Full-stack smart restaurant management, contactless QR code table ordering, 100+ item menu, real-time kitchen and order management, billing & GST, inventory, staff, and admin analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

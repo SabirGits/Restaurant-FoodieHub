@@ -1,0 +1,887 @@
+@import "tailwindcss";
+
+/* Tailwind v4: enable the `dark:` variant via a class/attribute on <html>
+   (set by ThemeContext) instead of only the OS preference. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ======================================================================== */
+/*  LUXURY RESTAURANT DESIGN SYSTEM                                         */
+/*                                                                          */
+/*  This file is PURELY presentational. It re-points the Tailwind colour     */
+/*  ramps the app is already authored with (zinc / amber / emerald / rose /  */
+/*  sky) at a premium hospitality palette, so every screen picks up the new  */
+/*  look without touching a single component's props, state or logic.        */
+/*                                                                          */
+/*  DARK  — "luxury restaurant at night": ink surfaces, warm gold, ivory ink */
+/*  LIGHT — "warm ivory hospitality": bone-white surfaces, deep antique gold */
+/* ======================================================================== */
+@theme {
+  --breakpoint-xs: 420px;
+
+  /* ---------- Typography ---------- */
+  --font-serif: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ---------- Surfaces & ink (DARK is the authoring theme) ---------- */
+  --color-zinc-950: #0b0b0f; /* page background          */
+  --color-zinc-900: #17171d; /* card                     */
+  --color-zinc-800: #24242b; /* elevated card / hairline */
+  --color-zinc-700: #33333b; /* strong hairline          */
+  --color-zinc-600: #4a4a53;
+  --color-zinc-500: #77736f; /* muted text               */
+  --color-zinc-400: #a7a3a0; /* secondary text           */
+  --color-zinc-300: #cfc9c2;
+  --color-zinc-200: #e6e1d8;
+  --color-zinc-100: #f8f5ee; /* primary text             */
+  --color-zinc-50: #fffdf8;
+
+  --color-neutral-950: #0b0b0f;
+  --color-neutral-900: #17171d;
+  --color-neutral-800: #24242b;
+  --color-neutral-100: #f8f5ee;
+  --color-neutral-50: #fffdf8;
+
+  /* ---------- Accent: gold (used sparingly — ~10% of the surface) ------ */
+  --color-amber-950: #241a08;
+  --color-amber-900: #3d2b0e;
+  --color-amber-800: #5a4015;
+  --color-amber-700: #8e6a26;
+  --color-amber-600: #b88632; /* deep gold  */
+  --color-amber-500: #d4a24c; /* primary gold */
+  --color-amber-400: #f4c76b; /* bright gold */
+  --color-amber-300: #f8d98f;
+  --color-amber-200: #fbe9c4;
+  --color-amber-100: #fdf6e6;
+
+  /* ---------- Success ---------- */
+  --color-emerald-950: #052e16;
+  --color-emerald-900: #14532d;
+  --color-emerald-800: #166534;
+  --color-emerald-700: #15803d;
+  --color-emerald-600: #16a34a;
+  --color-emerald-500: #22c55e;
+  --color-emerald-400: #4ade80;
+  --color-emerald-300: #86efac;
+
+  /* ---------- Danger ---------- */
+  --color-rose-950: #2a0e0e;
+  --color-rose-900: #450a0a;
+  --color-rose-800: #7f1d1d;
+  --color-rose-700: #b91c1c;
+  --color-rose-600: #dc2626;
+  --color-rose-500: #ef4444;
+  --color-rose-400: #f87171;
+  --color-rose-300: #fca5a5;
+  --color-red-600: #dc2626;
+  --color-red-500: #ef4444;
+
+  /* ---------- Information / AI ---------- */
+  --color-sky-950: #082032;
+  --color-sky-900: #0c4a6e;
+  --color-sky-800: #075985;
+  --color-sky-700: #0369a1;
+  --color-sky-600: #0284c7;
+  --color-sky-500: #0ea5e9;
+  --color-sky-400: #38bdf8;
+  --color-sky-300: #7dd3fc;
+  --color-blue-600: #0284c7;
+  --color-blue-500: #0ea5e9;
+
+  /* ---------- Semantic tokens (for hand-written CSS below) ---------- */
+  --bg-primary: #0b0b0f;
+  --bg-secondary: #141419;
+  --surface: #17171d;
+  --surface-elevated: #202026;
+  --text-primary: #f8f5ee;
+  --text-secondary: #a7a3a0;
+  --text-muted: #77736f;
+  --border: rgba(212, 162, 76, 0.2);
+  --border-strong: rgba(212, 162, 76, 0.35);
+  --accent: #d4a24c;
+  --accent-hover: #f4c76b;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --info: #38bdf8;
+}
+
+/* ------------------------------------------------------------------------ */
+/*  LIGHT THEME — a dedicated palette, not an inversion                      */
+/*  Warm ivory page, pure-white cards, deep antique gold, near-black ink.     */
+/* ------------------------------------------------------------------------ */
+:root[data-theme="light"] {
+  --color-zinc-950: #faf7f0; /* page background   */
+  --color-zinc-900: #ffffff; /* card              */
+  --color-zinc-800: #f3eee4; /* secondary surface */
+  --color-zinc-700: #e5dccb; /* border            */
+  --color-zinc-600: #cfc5b2;
+  --color-zinc-500: #8b8175; /* muted text        */
+  --color-zinc-400: #6b6258; /* secondary text    */
+  --color-zinc-300: #4a443c;
+  --color-zinc-200: #2e2a24;
+  --color-zinc-100: #201c18; /* primary text      */
+  --color-zinc-50: #120f0c;
+
+  --color-neutral-950: #faf7f0;
+  --color-neutral-900: #ffffff;
+  --color-neutral-800: #f3eee4;
+  --color-neutral-100: #201c18;
+  --color-neutral-50: #120f0c;
+
+  /* Gold darkens on ivory so text and icons keep AA contrast */
+  --color-amber-950: #f8efd9; /* soft gold wash */
+  --color-amber-900: #f0e2c2;
+  --color-amber-800: #e3d0a4;
+  --color-amber-700: #c08f36;
+  --color-amber-600: #b88632;
+  --color-amber-500: #d6a84f; /* bright gold — fills  */
+  --color-amber-400: #b88632; /* primary gold — text  */
+  --color-amber-300: #96691f;
+  --color-amber-200: #f8efd9;
+  --color-amber-100: #fcf7ec;
+
+  --color-emerald-950: #e7f6ec;
+  --color-emerald-900: #d3eedc;
+  --color-emerald-800: #a8dcbb;
+  --color-emerald-700: #14713a;
+  --color-emerald-600: #16803c;
+  --color-emerald-500: #16803c;
+  --color-emerald-400: #15803d;
+  --color-emerald-300: #0f6b31;
+
+  --color-rose-950: #fdecec;
+  --color-rose-900: #f9d8d8;
+  --color-rose-800: #efb4b4;
+  --color-rose-700: #a72020;
+  --color-rose-600: #c62828;
+  --color-rose-500: #c62828;
+  --color-rose-400: #b02020;
+  --color-rose-300: #9b1c1c;
+  --color-red-600: #c62828;
+  --color-red-500: #c62828;
+
+  --color-sky-950: #e6f4fb;
+  --color-sky-900: #cbe8f7;
+  --color-sky-800: #a2d5f0;
+  --color-sky-700: #026ea6;
+  --color-sky-600: #0284c7;
+  --color-sky-500: #0284c7;
+  --color-sky-400: #0284c7;
+  --color-sky-300: #026ea6;
+  --color-blue-600: #0284c7;
+  --color-blue-500: #0284c7;
+
+  --bg-primary: #faf7f0;
+  --bg-secondary: #f3eee4;
+  --surface: #ffffff;
+  --surface-elevated: #fffdf8;
+  --text-primary: #201c18;
+  --text-secondary: #6b6258;
+  --text-muted: #8b8175;
+  --border: #e5dccb;
+  --border-strong: #d8c9a9;
+  --accent: #b88632;
+  --accent-hover: #d6a84f;
+  --success: #16803c;
+  --danger: #c62828;
+  --info: #0284c7;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* `bg-zinc-950` and `text-zinc-950` share one variable, so inverting the ramp
+   alone would produce invisible text in light mode. These rules re-point the
+   text utilities at real ink — while leaving white text alone wherever it sits
+   on a solid brand chip (gold / green / red / dark overlay). */
+:root[data-theme="light"] .text-white:not([class*="bg-"]) { color: var(--text-primary); }
+:root[data-theme="light"] [class*="bg-zinc-"].text-white,
+:root[data-theme="light"] [class*="bg-neutral-"].text-white,
+:root[data-theme="light"] .bg-white.text-white { color: var(--text-primary); }
+:root[data-theme="light"] .text-zinc-950 { color: #120f0c; }
+:root[data-theme="light"] .text-zinc-900 { color: var(--text-primary); }
+:root[data-theme="light"] .text-zinc-800 { color: #2e2a24; }
+
+/* Dark translucent scrims (modal backdrops, photo captions) stay dark in both
+   themes so the white text layered on them keeps its contrast. */
+:root[data-theme="light"] .bg-black\/85,
+:root[data-theme="light"] .bg-black\/80,
+:root[data-theme="light"] .bg-black\/70,
+:root[data-theme="light"] .bg-black\/60,
+:root[data-theme="light"] .bg-black\/50 { background-color: rgba(32, 28, 24, 0.55); }
+
+/* ------------------------------------------------------------------------ */
+/*  BASE TYPOGRAPHY                                                          */
+/* ------------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  letter-spacing: -0.006em;
+  line-height: 1.6;
+}
+
+/* Playfair Display for display copy — luxury headline voice */
+.font-serif,
+h1.font-serif,
+h2.font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -0.018em;
+  line-height: 1.22;
+}
+
+/* Prices, counters and timers sit better on tabular figures */
+.tabular-nums,
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Small uppercase eyebrow labels used all over the UI */
+.uppercase {
+  letter-spacing: 0.08em;
+}
+
+/* Smooth the theme switch so toggling doesn't flash harshly */
+:root[data-theme] body,
+:root[data-theme] body * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.25s ease;
+}
+
+/* Warm ambient page wash — a single soft pool of light, not a colour party */
+:root[data-theme="dark"] body {
+  background-image:
+    radial-gradient(1100px 560px at 15% -10%, rgba(212, 162, 76, 0.09), transparent 62%),
+    radial-gradient(820px 460px at 95% 2%, rgba(212, 162, 76, 0.045), transparent 64%);
+  background-attachment: fixed;
+}
+:root[data-theme="light"] body {
+  background-image:
+    radial-gradient(1100px 560px at 15% -10%, rgba(184, 134, 50, 0.13), transparent 62%),
+    radial-gradient(820px 460px at 95% 2%, rgba(184, 134, 50, 0.07), transparent 64%);
+  background-attachment: fixed;
+}
+
+/* Slim brand scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--color-amber-700) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--color-amber-700); border-radius: 9999px; }
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* Gold focus ring — consistent, accessible, on every interactive element */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-amber-500);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* Comfortable touch targets on phones (this is a QR dining app) */
+@media (pointer: coarse) {
+  button, a[role="button"], select { min-height: 44px; }
+  button.p-1\.5, button.p-2 { min-height: 40px; min-width: 40px; }
+}
+
+/* The printed invoice must stay true black-on-white regardless of theme */
+.printable-area,
+.printable-area * { color-scheme: light; }
+
+/* ------------------------------------------------------------------------ */
+/*  SURFACES: glass, premium shadows                                         */
+/* ------------------------------------------------------------------------ */
+
+/* Used only where glass belongs: navbar, hero overlays, small floating cards */
+.glass-panel {
+  background: rgba(23, 23, 29, 0.66);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--border);
+}
+:root[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+:root[data-theme="light"] .glass-panel-light {
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid var(--border);
+}
+
+/* Layered, warm-tinted elevation — replaces flat black drop shadows */
+.shadow-premium {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.16),
+    0 8px 24px -12px rgba(0, 0, 0, 0.55),
+    0 24px 48px -28px rgba(212, 162, 76, 0.22);
+}
+:root[data-theme="light"] .shadow-premium {
+  box-shadow:
+    0 1px 2px rgba(60, 48, 30, 0.06),
+    0 8px 24px -14px rgba(60, 48, 30, 0.16),
+    0 24px 48px -30px rgba(184, 134, 50, 0.24);
+}
+
+/* Gold display gradient for hero words */
+.text-gold-gradient {
+  background: linear-gradient(115deg, #f4c76b 0%, #d4a24c 48%, #b88632 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+:root[data-theme="light"] .text-gold-gradient {
+  background: linear-gradient(115deg, #d6a84f 0%, #b88632 55%, #96691f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Hairline gold divider used between sections */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+/* ------------------------------------------------------------------------ */
+/*  HERO — cinematic food photograph + theme-aware scrim                     */
+/* ------------------------------------------------------------------------ */
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  /* Slow, almost imperceptible drift keeps the plate feeling alive */
+  transform: scale(1.06);
+  animation: hero-drift 32s ease-in-out infinite alternate;
+}
+@keyframes hero-drift {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to   { transform: scale(1.12) translate3d(-1.2%, -1.4%, 0); }
+}
+
+/* Dark: deep cinematic scrim so ivory copy reads cleanly over the food */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(100deg, rgba(11, 11, 15, 0.95) 0%, rgba(11, 11, 15, 0.82) 38%, rgba(11, 11, 15, 0.42) 68%, rgba(11, 11, 15, 0.58) 100%),
+    linear-gradient(to bottom, rgba(11, 11, 15, 0.35) 0%, transparent 32%, rgba(11, 11, 15, 0.9) 100%);
+}
+/* Light: warm ivory veil — the photo stays visible, the copy stays dark */
+:root[data-theme="light"] .hero-scrim {
+  background:
+    linear-gradient(100deg, rgba(250, 247, 240, 0.97) 0%, rgba(250, 247, 240, 0.9) 40%, rgba(250, 247, 240, 0.58) 70%, rgba(250, 247, 240, 0.72) 100%),
+    linear-gradient(to bottom, rgba(250, 247, 240, 0.5) 0%, rgba(250, 247, 240, 0.2) 34%, rgba(250, 247, 240, 0.95) 100%);
+}
+
+/* On phones the copy sits over the middle of the photo, so darken evenly */
+@media (max-width: 767px) {
+  .hero-scrim {
+    background: linear-gradient(to bottom, rgba(11, 11, 15, 0.9) 0%, rgba(11, 11, 15, 0.74) 45%, rgba(11, 11, 15, 0.94) 100%);
+  }
+  :root[data-theme="light"] .hero-scrim {
+    background: linear-gradient(to bottom, rgba(250, 247, 240, 0.95) 0%, rgba(250, 247, 240, 0.86) 45%, rgba(250, 247, 240, 0.97) 100%);
+  }
+  .hero-photo { object-position: center 45%; }
+}
+
+/* ------------------------------------------------------------------------ */
+/*  SPOTLIGHT — the floating "Chef's Pick" 3D image card on the homepage     */
+/*  Dark: warm gold glow on ink. Light: soft gold halo on ivory + a crisp    */
+/*  ring, so the frame — not just the photo — carries the "3D" read.         */
+/* ------------------------------------------------------------------------ */
+.spotlight-frame {
+  background: linear-gradient(155deg, rgba(244, 199, 107, 0.9), rgba(212, 162, 76, 0.25) 40%, rgba(212, 162, 76, 0.9));
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.55), 0 4px 14px -6px rgba(212, 162, 76, 0.35);
+}
+:root[data-theme="light"] .spotlight-frame {
+  background: linear-gradient(155deg, rgba(214, 168, 79, 0.95), rgba(214, 168, 79, 0.2) 40%, rgba(184, 134, 50, 0.95));
+  box-shadow: 0 20px 40px -18px rgba(60, 48, 30, 0.28), 0 4px 14px -8px rgba(184, 134, 50, 0.4);
+}
+.spotlight-glow { position: absolute; opacity: 0.75; }
+:root[data-theme="light"] .spotlight-glow { opacity: 0.4; }
+.spotlight-scrim {
+  background: linear-gradient(to top, rgba(11, 11, 15, 0.85) 0%, rgba(11, 11, 15, 0.05) 55%, transparent 75%);
+  pointer-events: none;
+}
+:root[data-theme="light"] .spotlight-scrim {
+  background: linear-gradient(to top, rgba(20, 16, 10, 0.7) 0%, rgba(20, 16, 10, 0.02) 55%, transparent 75%);
+}
+
+/* ------------------------------------------------------------------------ */
+/*  SUBTLE 3D — depth, not theatrics                                         */
+/*  The dish photography stays the hero; the geometry only supports it.       */
+/* ------------------------------------------------------------------------ */
+
+/* Perspective stage — children can sit on real Z planes inside this */
+.scene-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  transform-style: preserve-3d;
+}
+
+/* Card that tilts gently toward the pointer (max ~4deg, set from JS) */
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0));
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+.tilt-card:hover {
+  --ty: -3px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 18px 36px -18px rgba(0, 0, 0, 0.65),
+    0 30px 60px -34px rgba(212, 162, 76, 0.35);
+}
+:root[data-theme="light"] .tilt-card:hover {
+  box-shadow:
+    0 2px 4px rgba(60, 48, 30, 0.07),
+    0 18px 36px -20px rgba(60, 48, 30, 0.2),
+    0 30px 60px -36px rgba(184, 134, 50, 0.35);
+}
+
+/* Faint specular sweep that follows the pointer across the card */
+.tilt-card-shine {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.07), transparent 58%);
+  opacity: 0;
+  transition: opacity 0.35s ease-out;
+  pointer-events: none;
+}
+.tilt-card:hover .tilt-card-shine { opacity: 1; }
+
+/* ------------------------------------------------------------------------ */
+/*  DISH CARDS — advanced 3D treatment (raised edge, deeper lift, resting    */
+/*  glow) layered on top of the existing tilt-card pointer-tracking above.   */
+/*  Reads as a physical, lacquered card in both themes, not a flat rectangle. */
+/* ------------------------------------------------------------------------ */
+
+/* Resting elevation so the card already looks "lifted" before any hover —
+   important on touch devices, which never trigger :hover at all. */
+.food-card-3d {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.22),
+    0 14px 30px -20px rgba(0, 0, 0, 0.6),
+    0 26px 50px -34px rgba(212, 162, 76, 0.18);
+}
+:root[data-theme="light"] .food-card-3d {
+  box-shadow:
+    0 1px 2px rgba(60, 48, 30, 0.06),
+    0 12px 28px -20px rgba(60, 48, 30, 0.22),
+    0 24px 46px -32px rgba(184, 134, 50, 0.22);
+}
+
+/* A thin gradient "rim light" traced just inside the border — the detail
+   that reads as a lacquered, physical card rather than a flat photo tile. */
+.food-card-3d-edge {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 0 0 1px rgba(212, 162, 76, 0);
+  transition: box-shadow 0.45s ease;
+}
+:root[data-theme="light"] .food-card-3d-edge {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), inset 0 0 0 1px rgba(184, 134, 50, 0);
+}
+.food-card-3d:hover .food-card-3d-edge {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0 1px rgba(244, 199, 107, 0.4);
+}
+:root[data-theme="light"] .food-card-3d:hover .food-card-3d-edge {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 0 0 1px rgba(184, 134, 50, 0.45);
+}
+
+/* Hover/lift goes a touch deeper than the base tilt-card so dish cards feel
+   more "alive" than flatter surfaces (rating pills, form fields, etc). */
+.food-card-3d.tilt-card:hover {
+  --ty: -6px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.24),
+    0 22px 44px -20px rgba(0, 0, 0, 0.7),
+    0 36px 70px -30px rgba(212, 162, 76, 0.4);
+}
+:root[data-theme="light"] .food-card-3d.tilt-card:hover {
+  box-shadow:
+    0 4px 8px rgba(60, 48, 30, 0.09),
+    0 22px 44px -22px rgba(60, 48, 30, 0.26),
+    0 36px 70px -32px rgba(184, 134, 50, 0.4);
+}
+
+/* Tap/press feedback for touch screens, where :hover never fires */
+.food-card-3d:active { --ty: -1px; --rx: 0deg; --ry: 0deg; }
+
+/* The price sits on its own small raised "coin" so it reads as a distinct,
+   tactile element rather than plain text — subtle, not a toy. */
+.food-card-price {
+  position: relative;
+}
+.food-card-price::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  bottom: -3px;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(212, 162, 76, 0.16), transparent);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+/* The dish photo lifts a hair and zooms — the classic premium food-card move */
+.tilt-card-pop {
+  transform: translateZ(0) scale(1);
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.tilt-card:hover .tilt-card-pop { transform: translateZ(18px) scale(1.06); }
+
+/* Badges float just above the photo plane */
+.tilt-card-chip {
+  transform: translateZ(6px);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.tilt-card:hover .tilt-card-chip { transform: translateZ(22px); }
+
+/* Buttons: a quiet lift, not a toy extrusion */
+.btn-3d {
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22), 0 6px 16px -8px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.22s ease, background-color 0.22s ease;
+}
+:root[data-theme="light"] .btn-3d {
+  box-shadow: 0 1px 2px rgba(60, 48, 30, 0.08), 0 6px 16px -10px rgba(184, 134, 50, 0.45);
+}
+.btn-3d:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 12px 24px -10px rgba(212, 162, 76, 0.42);
+}
+:root[data-theme="light"] .btn-3d:hover {
+  box-shadow: 0 2px 4px rgba(60, 48, 30, 0.1), 0 12px 24px -12px rgba(184, 134, 50, 0.5);
+}
+.btn-3d:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+/* Glass tile with a restrained lift (hero side card, stat tiles) */
+.tile-3d {
+  transform-style: preserve-3d;
+  transform: translateZ(0) translateY(0);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s ease;
+}
+.tile-3d:hover {
+  transform: translateZ(14px) translateY(-4px);
+  box-shadow: 0 28px 56px -30px rgba(212, 162, 76, 0.42);
+}
+
+/* Feature medallion: a machined gold disc, lifting slightly on hover */
+.feature-coin {
+  background: linear-gradient(150deg, #f4c76b 0%, #d4a24c 45%, #a9762a 100%);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(88, 58, 12, 0.35),
+    0 6px 16px -8px rgba(212, 162, 76, 0.65);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.45s ease;
+}
+.feature-tile {
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease;
+  /* Slightly more see-through than the standard .glass-panel it's built on. */
+  background: rgba(23, 23, 29, 0.48) !important;
+}
+:root[data-theme="light"] .feature-tile {
+  background: rgba(255, 255, 255, 0.62) !important;
+}
+/* Extra transparency can wash out contrast when something busy sits behind
+   the card, so the title/subtext keep a soft shadow in BOTH themes instead
+   of relying on the background alone to stay readable. */
+.feature-tile .feature-coin ~ div div {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+:root[data-theme="light"] .feature-tile .feature-coin ~ div div {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+.feature-tile:hover { transform: translateY(-3px); }
+.feature-tile:hover .feature-coin {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 4px rgba(88, 58, 12, 0.35),
+    0 12px 24px -10px rgba(212, 162, 76, 0.75);
+}
+
+/* Very slow ambient drift for hero decoration layers */
+@keyframes drift-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -10px, 0); }
+}
+@keyframes drift-slower {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(8px, 7px, 0); }
+}
+.float-3d      { animation: drift-slow 14s ease-in-out infinite; }
+.float-3d-slow { animation: drift-slower 19s ease-in-out infinite; }
+
+/* Hero decoration: a whisper of warm light, nothing neon */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.16;
+  animation: drift-slow 20s ease-in-out infinite;
+  pointer-events: none;
+}
+:root[data-theme="light"] .blob { opacity: 0.12; }
+
+.halo-3d {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(212, 162, 76, 0.3) 0%, transparent 70%);
+  filter: blur(56px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+:root[data-theme="light"] .halo-3d { opacity: 0.35; }
+
+/* The receding grid floor is now a faint suggestion of a room, not a set piece */
+.grid-floor {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  background-image:
+    linear-gradient(to right, rgba(212, 162, 76, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 162, 76, 0.09) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(500px) rotateX(66deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, black 5%, transparent 72%);
+  -webkit-mask-image: linear-gradient(to top, black 5%, transparent 72%);
+  pointer-events: none;
+}
+:root[data-theme="light"] .grid-floor {
+  background-image:
+    linear-gradient(to right, rgba(184, 134, 50, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184, 134, 50, 0.1) 1px, transparent 1px);
+}
+
+/* A barely-there vertical settle for the hero's floating card */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.bob-3d { animation: bob 9s ease-in-out infinite; }
+
+/* Live-stage medallion flip in the order tracker */
+@keyframes coin-spin { to { transform: rotateY(360deg); } }
+.coin-spin { animation: coin-spin 9s linear infinite; transform-style: preserve-3d; }
+
+/* Shimmer sweep for in-progress bars */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+.shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.16) 45%, transparent 90%);
+  transform: translateX(-120%);
+  animation: shimmer-sweep 3.2s ease-in-out infinite;
+}
+
+/* Animated gold hairline border for premium chips */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(120deg, #d4a24c, #8e6a26, #f4c76b) border-box;
+  border: 1px solid transparent;
+  background-size: 100% 100%, 200% 200%;
+  animation: gradient-border-shift 9s ease infinite;
+}
+@keyframes gradient-border-shift {
+  0%   { background-position: 0% 0%, 0% 50%; }
+  50%  { background-position: 0% 0%, 100% 50%; }
+  100% { background-position: 0% 0%, 0% 50%; }
+}
+
+/* Modal entrance: fade + a small settle. Applied via Framer Motion already;
+   this covers the non-motion modals so every surface behaves the same. */
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-in { animation: modal-in 0.28s cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* Staggered reveal for the dish grid */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise-in { animation: rise-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* ------------------------------------------------------------------------ */
+/*  PRINT (invoice)                                                          */
+/* ------------------------------------------------------------------------ */
+@media print {
+  body * { visibility: hidden; }
+  .printable-area, .printable-area * { visibility: visible; }
+  .printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .no-print { display: none !important; }
+}
+
+/* ------------------------------------------------------------------------ */
+/*  RESPONSIVE — 320 / 375 / 390 / 430 / 768 / 1024 / 1280 / 1440 / 1920     */
+/* ------------------------------------------------------------------------ */
+
+/* Nothing may ever push the page sideways on a phone */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Ultra-compact phones (320–360px): tighten display type so nothing clips */
+@media (max-width: 360px) {
+  .hero-title { font-size: 2rem !important; }
+  .feature-tile { padding-left: 0.5rem; padding-right: 0.5rem; }
+}
+
+/* Tablets: gentler depth */
+@media (max-width: 1024px) {
+  .tile-3d:hover { transform: translateZ(8px) translateY(-3px); }
+}
+
+/* Phones: flatten the pointer-driven 3D — it means nothing on touch */
+@media (max-width: 640px) {
+  .grid-floor { height: 34%; background-size: 40px 40px; }
+  .blob  { filter: blur(64px); opacity: 0.12; }
+  .halo-3d { filter: blur(40px); opacity: 0.32; }
+  .tilt-card { transform: none !important; }
+  .tilt-card:hover .tilt-card-pop,
+  .tilt-card:hover .tilt-card-chip { transform: none !important; }
+  .btn-3d { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+}
+
+/* Any touch device: no hover-only transform can get stuck on screen */
+@media (hover: none) {
+  .tilt-card, .tile-3d { transform: none !important; }
+  .feature-tile:hover, .feature-tile:hover .feature-coin { transform: none !important; }
+}
+
+/* Very large screens: let the content breathe rather than stretch */
+@media (min-width: 1536px) {
+  .hero-photo { object-position: center 50%; }
+}
+
+/* Honour reduced-motion: kill every ambient animation, keep the layout */
+@media (prefers-reduced-motion: reduce) {
+  .float-3d, .float-3d-slow, .halo-3d, .bob-3d, .blob, .coin-spin,
+  .shimmer-sweep::after, .hero-photo, .gradient-border, .rise-in, .modal-in {
+    animation: none !important;
+  }
+  .hero-photo { transform: scale(1.02) !important; }
+  .tilt-card, .tilt-card-pop, .tilt-card-chip, .tile-3d, .feature-tile, .feature-coin {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ======================================================================== */
+/*  v5 FIXES                                                                 */
+/* ======================================================================== */
+
+/* ---- 1. Icon-only buttons (✕ close, ⟳ refresh) — visible in LIGHT theme --
+   In light mode these sat on ivory in a pale grey and turned WHITE on hover
+   (white on ivory = invisible). Give them real ink, a soft chip and a clear
+   hover state. Dark theme is untouched. */
+:root[data-theme="light"] .icon-btn {
+  color: #2e2a24;
+  background: #f1eadb;
+  border: 1px solid #d8c9a9;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 5px -2px rgba(60, 48, 30, 0.25);
+}
+:root[data-theme="light"] .icon-btn:hover:not(:disabled) {
+  color: #120f0c;
+  background: #e6d9bb;
+  border-color: #b88632;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 4px 10px -4px rgba(184, 134, 50, 0.5);
+}
+:root[data-theme="light"] .icon-btn:active:not(:disabled) { transform: translateY(1px); }
+:root[data-theme="light"] .icon-btn svg { stroke-width: 2.4; }
+
+/* Any other "hover:text-white" on a light surface used to vanish on hover.
+   Keep it white only where the hover background is a solid brand colour. */
+:root[data-theme="light"] .hover\:text-white:hover:not([class*="hover:bg-blue"]):not([class*="hover:bg-amber"]):not([class*="hover:bg-emerald"]):not([class*="hover:bg-purple"]):not([class*="hover:bg-rose"]):not([class*="hover:bg-red"]):not([class*="hover:bg-black"]) {
+  color: var(--text-primary);
+}
+
+/* ---- 2. Homepage ad slider ---------------------------------------------- */
+@keyframes ad-kenburns { from { transform: scale(1); } to { transform: scale(1.07); } }
+.ad-kenburns { animation: ad-kenburns 6s ease-out forwards; }
+@keyframes ad-caption-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.ad-caption { animation: ad-caption-in 0.6s ease-out both; }
+
+/* ======================================================================== */
+/*  v6 — hero slider: let the sliding food photos show through the scrim     */
+/*  (text side stays dark/ivory so copy remains readable in both themes)     */
+/* ======================================================================== */
+@media (min-width: 768px) {
+  .hero-scrim {
+    background:
+      linear-gradient(100deg, rgba(11, 11, 15, 0.9) 0%, rgba(11, 11, 15, 0.72) 40%, rgba(11, 11, 15, 0.3) 70%, rgba(11, 11, 15, 0.4) 100%),
+      linear-gradient(to bottom, rgba(11, 11, 15, 0.25) 0%, transparent 30%, rgba(11, 11, 15, 0.75) 100%);
+  }
+  :root[data-theme="light"] .hero-scrim {
+    background:
+      linear-gradient(100deg, rgba(250, 247, 240, 0.95) 0%, rgba(250, 247, 240, 0.85) 42%, rgba(250, 247, 240, 0.4) 72%, rgba(250, 247, 240, 0.5) 100%),
+      linear-gradient(to bottom, rgba(250, 247, 240, 0.35) 0%, rgba(250, 247, 240, 0.1) 32%, rgba(250, 247, 240, 0.85) 100%);
+  }
+}
+
+/* ======================================================================== */
+/*  v7 — clear hero photos                                                   */
+/* ======================================================================== */
+
+/* Hero: the photo must be CLEARLY visible. Only a soft shade sits behind the
+   text on the left; the rest of the picture is left almost untouched. */
+.hero-scrim,
+:root[data-theme="light"] .hero-scrim {
+  background: linear-gradient(90deg, rgba(11, 11, 15, 0.72) 0%, rgba(11, 11, 15, 0.5) 34%, rgba(11, 11, 15, 0.06) 68%, rgba(11, 11, 15, 0) 100%);
+}
+:root[data-theme="light"] .hero-scrim {
+  background: linear-gradient(90deg, rgba(20, 14, 6, 0.62) 0%, rgba(20, 14, 6, 0.42) 34%, rgba(20, 14, 6, 0.05) 68%, rgba(20, 14, 6, 0) 100%);
+}
+@media (max-width: 767px) {
+  .hero-scrim,
+  :root[data-theme="light"] .hero-scrim {
+    background: linear-gradient(to bottom, rgba(11, 11, 15, 0.62) 0%, rgba(11, 11, 15, 0.4) 50%, rgba(11, 11, 15, 0.6) 100%);
+  }
+}
+.grid-floor { opacity: 0.35; }
+/* Because the photo now shows through, the hero copy is always light-on-photo
+   (in both themes) with a soft shadow so it stays readable. */
+.hero-title, .hero-title * { text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
+:root[data-theme="light"] section.scene-3d h1,
+:root[data-theme="light"] section.scene-3d h1.hero-title { color: #ffffff; }
+:root[data-theme="light"] section.scene-3d .max-w-2xl p { color: #f4efe6; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+:root[data-theme="light"] section.scene-3d .max-w-2xl .text-zinc-400 { color: #ece4d3; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+:root[data-theme="light"] section.scene-3d .max-w-2xl .text-amber-400 { color: #f4c76b; }
+
